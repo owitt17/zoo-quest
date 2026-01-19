@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fun fact</title>
+        <link rel="stylesheet" href="styles.css">
+        <audio autoplay loop>
+            <source src="ost/CORRECT ANSWER - Final Fantasy VII - Victory Fanfare [HD].mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Set the background image and adjust properties */
+            body::before {
+                content: "";
+                background-image: url('background/question.jpg');
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
+        <div class="centered-page-text">
+            <p class="fun-fact-title">FUN FACT :</p>
+            <img class="img-fun-fact" src="funfactpic/zebra.jpg" height="350" width="800">
+            <p class="fun-fact-text">NEW-BORN FOALS CAN STAND AFTER SIX MINUTES</p>
+        </div>
+        <a href="question_6.html">
+            <img class="continue-image" src="icon/continue.png" height="150" width="250">
+        </a>
+        <footer></footer>
+    </body>
+</html>

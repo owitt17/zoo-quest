@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>How to play 2</title>
+        <link rel="stylesheet" href="styles.css">
+        <audio autoplay loop>
+            <source src="ost/MAIN MENU - Boss (Unused Version) - Plok.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Set the background image and adjust properties */
+            body::before {
+                content: "";
+                background-color: #f0e68c;
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="powerup-container">
+            <h1 class="how-title">HOW TO PLAY :</h1>
+            <p>USER POWERUPS TO SOLVE PUZZLES QUICKER!</p>
+            <p>REMEMBER THEY CAN ONLY BE USED ONCE!</p>
+            <img class="power-image" src="icon/shield.png" alt="Shield">
+            <img class="power-image" src="icon/freeze.png" alt="Freeze">
+            <img class="power-image" src="icon/eraser.png" alt="Eraser">
+        </div>
+        <a href="howToPlay1.html"><img class="back-intro" src="icon/back.png" height="150"></a>
+    </body>
+</html>

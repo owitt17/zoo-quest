@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Power up</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="powerup-container">
+            <p class="fun-fact-title">CHOOSE POWERUP :</p>
+            <img class="powerup-image" src="icon/shield.png" alt="Shield" onclick="choosePowerup('icon/shield.png')">
+            <img class="powerup-image" src="icon/freeze.png" alt="Freeze" onclick="choosePowerup('icon/freeze.png')">
+            <img class="powerup-image" src="icon/eraser.png" alt="Eraser" onclick="choosePowerup('icon/eraser.png')">
+        </div>
+
+        <!--Script to store powerup-->
+        <script>
+            function choosePowerup(powerup) {
+              sessionStorage.setItem('powerup2', powerup);
+              // Redirect user after choosing a powerup
+              window.location.href = 'question_9.html';
+            }
+        </script>
+    </body>
+</html>

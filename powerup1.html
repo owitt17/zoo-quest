@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Power up</title>
+        <link rel="stylesheet" href="styles.css">
+        <audio autoplay loop>
+            <source src="ost/GAMEPLAY - Donkey Kong Country OST (Super Nintendo) - Track 0523 - Cave Dweller Concert.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Set the background image and adjust properties */
+            body::before {
+                content: "";
+                background-image: url('background/question.jpg');
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="powerup-container">
+            <p class="fun-fact-title">CHOOSE POWERUP :</p>
+            <img class="powerup-image" src="icon/shield.png" alt="Shield" onclick="choosePowerup('icon/shield.png')">
+            <img class="powerup-image" src="icon/freeze.png" alt="Freeze" onclick="choosePowerup('icon/freeze.png')">
+            <img class="powerup-image" src="icon/eraser.png" alt="Eraser" onclick="choosePowerup('icon/eraser.png')">
+        </div>
+        <br><br><br>
+        <div class="powerup-desc">
+            <div class="powerup-text">
+                <h1 class="title-powerup">NordVPN</h1>
+                <p>Shields Evan from a mistake!</p>
+            </div>
+            <div class="powerup-text">
+                <h1 class="title-powerup">The World</h1>
+                <p>Freeze time!</p>
+            </div>
+            <div class="powerup-text">
+                <h1 class="title-powerup">Faber-Castell</h1>
+                <p>Removes one incorrect letter or answer</p>
+            </div>
+        </div>
+        <!--Script to store powerup-->
+        <script>
+            function choosePowerup(powerup) {
+              sessionStorage.setItem('powerup1', powerup);
+              // Redirect user after choosing a powerup
+              window.location.href = 'Question_5.html';
+            }
+        </script>
+    </body>
+</html>

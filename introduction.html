@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Introduction one</title>
+        <link rel="stylesheet" href="styles.css">
+        <audio autoplay loop>
+            <source src="ost/INTRO CUTSCENE - Donkey Kong Country OST (Super Nintendo) - Track 0223 - Simian Segue.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Set the background image and adjust properties */
+            body::before {
+                content: "";
+                background-color: black;
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row-one">
+            <img src="intro/intro1.png" height="450">
+            <img src="intro/intro2.png" height="450">
+        </div>
+        <div class="row-two">
+            <img src="intro/intro3.png" height="300">
+            <img src="intro/intro4.png" height="300">
+            <img src="intro/intro5.png" height="300">
+        </div>
+        <a href="introduction2.html"><img class="continue-intro" src="icon/continue.png" height="150"></a>
+    </body>
+</html>

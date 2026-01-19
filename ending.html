@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Congratulation</title>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Set the background image and adjust properties */
+            body::before {
+                content: "";
+                background-image: url('lastscene/congrat.png');
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+
+            .continue-ending{
+                margin-top: 38%;
+                margin-left: 80%;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+
+            .continue-ending:hover{
+                transform: scale(1.2);
+            }
+
+        </style>
+        <audio autoplay loop>
+            <source src="ost/CORRECT ANSWER - Final Fantasy VII - Victory Fanfare [HD].mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+    </head>
+    <body>
+        <a href="ending2.html"><img class="continue-ending" src="icon/continue.png" height="150"></a>
+    </body>
+</html>

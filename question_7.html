@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Question 7</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <audio autoplay loop>
+    <source src="ost/GAMEPLAY - Donkey Kong Country OST (Super Nintendo) - Track 0523 - Cave Dweller Concert.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+    }
+
+    /* Set the background image and adjust properties */
+    body::before {
+        content: "";
+        background-image: url('background/question.jpg');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+</style>
+</head>
+
+<body>
+  <header></header>
+  <div class="upper-box">
+    <p class="number">7</p>
+    <img id="bombImage" class="image-bomb" src="icon/bomb1.png" height="70px" width="80px">
+    <div id="explosion"></div>
+    <div id="timer" class="timer">00:00</div>
+
+    <!--Timer Script-->
+    <script>
+
+
+
+      // Set the duration of the timer in seconds
+      const timerDuration = 30;
+      let timeLeft = timerDuration;
+
+      // Function to update the timer display
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        document.getElementById('timer').textContent = formattedTime;
+      }
+
+      // Function to update the bomb Image based on the time
+      function updateBombImage() {
+        const bombImage = document.getElementById('bombImage');
+        const explosionElement = document.getElementById('explosion')
+
+        if (timeLeft >= 21) {
+          bombImage.src = 'icon/bomb1.png';
+        } else if (timeLeft >= 10) {
+          bombImage.src = 'icon/bomb2.png';
+        } else if (timeLeft >= 2) {
+          bombImage.src = 'icon/bomb3.png';
+        } else if (timeLeft == 1) {
+          bombImage.src = 'icon/bomb4.png';
+        } else {
+          // Display explosion
+          bombImage.style.display = 'none';
+          explosionElement.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+
+          explosionElement.style.animation = 'none';
+          void explosionElement.offsetWidth;
+
+          // Play explosion animation
+          explosionElement.style.animation = 'explosionAnimation 2s infinite';
+
+          // Stop the timer interval
+          clearInterval(timerInterval);
+
+          // Delay before redirecting to game over page
+          setTimeout(() => {
+            window.location.href = 'gameOver.html';
+
+          }, 3000);
+        }
+      }
+
+      // Function to update the timer every second
+      function updateTimer() {
+        if (timeLeft > 0) {
+          timeLeft--;
+          updateTimerDisplay();
+          updateBombImage();
+        } else {
+          clearInterval(timerInterval);
+          alert("Timer expired!");
+        }
+      }
+
+      // Initialize the timer display
+      updateTimerDisplay();
+      updateBombImage();
+
+      // Update the timer every second
+      const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+  </div>
+
+  <!--Change the question over here-->
+  <p class="question">I'm known for my black and white stripes and am often associated with bamboo. </p>
+  <div class="button-box">
+
+
+    <!-- Add this button inside the button-box div -->
+    <button class="clear-button" onclick="clearAnswerText()">Clear</button>
+
+    <script>
+      function clearAnswerText() {
+        location.reload();
+      }
+    </script>
+
+    <!-- Delete this code snippet if not being used-->
+
+    <!--Change the answer text over here-->
+    <div class="answer-box"></div>
+    <button class="answer-text2">D</button>
+    <button class="answer-text2">A</button>
+    <button class="answer-text2">L</button>
+    <button class="answer-text2">P</button>
+    <button class="answer-text2">F</button>
+    <button class="answer-text2">N</button>
+    <br />
+    <button class="answer-text2">Y</button>
+    <button class="answer-text2">N</button>
+    <button class="answer-text2">I</button>
+    <button class="answer-text2">A</button>
+    <div class="bottom-box">
+      <div class="lives">
+        <p class="lives-text">LIVES</p>
+        <div class="heart-container">
+          <img id="heart1" class="heart" src="icon/heart.png" height="70px" width="70px">
+          <img id="heart2" class="heart" src="icon/heart.png" height="70px" width="70px">
+          <img id="heart3" class="heart" src="icon/heart.png" height="70px" width="70px">
+        </div>
+      </div>
+    </div>
+
+    <script>
+        //power up
+      document.addEventListener("DOMContentLoaded",function(event){
+                const selectedPowerup = sessionStorage.getItem('powerup1');
+                document.getElementById('powerup-image').src = sessionStorage.getItem('powerup1') || '';
+            });
+
+        function usePowerup() {
+            if (sessionStorage.getItem('powerup1')) {
+                if (sessionStorage.getItem('powerup1') === 'icon/shield.png') {
+                    // Prevent the user from losing a life
+                    remainingTries++;
+                    sessionStorage.setItem('remainingTries', remainingTries);
+                } else if (sessionStorage.getItem('powerup1') === 'icon/freeze.png') {
+                    // Pause the timer
+                    clearInterval(timerInterval);
+
+                    // Delay before resuming the timer
+                    setTimeout(() => {
+                        timerInterval = setInterval(updateTimer, 1000);
+                    }, 10000); // 10 mins freeze time
+                } else if (sessionStorage.getItem('powerup1') === 'icon/eraser.png') {
+                    // Remove one of the wrong answers
+                    const correctAnswerIndex = 3;
+                    const buttons = document.querySelectorAll('.button-box .answer-text');
+                    const wrongAnswers = Array.from(buttons).filter((button, index) => index !== correctAnswerIndex);
+                    const randomIndex = Math.floor(Math.random() * wrongAnswers.length);
+                    wrongAnswers[randomIndex].style.display = 'none';
+                }
+
+
+                // After using the powerup, remove it from the sessionStorage
+                sessionStorage.removeItem('powerup1');
+
+                // Update the powerup image in the HTML
+                document.getElementById('powerup-image').src = '';
+            }
+        }
+        
+    //scramble 
+      const answerTexts = document.querySelectorAll('.answer-text2');
+      const answerBox = document.querySelector('.answer-box');
+      const correctAnswer = 'PANDA';
+      let selectedLetters = [];
+      var counter = 0;
+      answerTexts.forEach((answerText) => {
+        answerText.addEventListener('click', () => {
+          if (!answerText.disabled) {
+            answerText.disabled = true;
+            selectedLetters.push(answerText.textContent);
+            answerBox.textContent = selectedLetters.join('');
+            counter++;
+          }
+          if (counter === 5) {
+            if (selectedLetters.join('') === correctAnswer) {
+              answerBox.textContent = 'Correct! The answer is ' + correctAnswer + '.';
+              window.location.href = 'correct7.html';
+            } else {
+
+              // User clicked the wrong answer
+              showBrokenHeart();
+              remainingTries--;
+
+              sessionStorage.setItem('remainingTries', remainingTries);
+              location.reload();
+            }
+
+
+          }
+        });
+      });
+
+      function resetGame() {
+        selectedLetters = [];
+        answerTexts.forEach((answerText) => {
+          answerText.disabled = false;
+        });
+        answerBox.textContent = '';
+      }
+
+
+
+      // Add the following lines to remove the pop class after 0.3 seconds
+      setTimeout(() => {
+        answerBox.classList.remove('pop');
+      }, 300); // Adjust the duration as needed
+
+
+      // Add the following lines to remove the active class after 2 seconds
+      setTimeout(() => {
+        answerBox.classList.remove('active');
+      }, 2000);
+
+      // Function to show a broken heart for 1 seconds
+      function showBrokenHeart() {
+        const brokenHeartSrc = 'icon/heart1.png'; // Replace with the path to the broken heart image
+        const emptyHeartSrc = 'icon/heart-empty.png'; // Replace with the path to an empty heart image
+
+        const storedRemainingTries = sessionStorage.getItem('remainingTries');
+        let remainingTries = storedRemainingTries ? parseInt(storedRemainingTries) : 3;
+
+        switch (remainingTries) {
+          case 2:
+            setTimeout(() => {
+              document.getElementById('heart3').src = emptyHeartSrc;
+            }, 500);
+            document.getElementById('heart3').src = brokenHeartSrc;
+            break;
+          case 1:
+            setTimeout(() => {
+              document.getElementById('heart3').src = emptyHeartSrc;
+            }, 500);
+            document.getElementById('heart3').src = brokenHeartSrc;
+            setTimeout(() => {
+              document.getElementById('heart2').src = emptyHeartSrc;
+            }, 500);
+            document.getElementById('heart2').src = brokenHeartSrc;
+            break;
+          case 0:
+            setTimeout(() => {
+              document.getElementById('heart3').src = emptyHeartSrc;
+            }, 500);
+            document.getElementById('heart3').src = brokenHeartSrc;
+            setTimeout(() => {
+              document.getElementById('heart2').src = emptyHeartSrc;
+            }, 500);
+            document.getElementById('heart2').src = brokenHeartSrc;
+            setTimeout(() => {
+              document.getElementById('heart1').src = emptyHeartSrc;
+            }, 500);
+            document.getElementById('heart1').src = brokenHeartSrc;
+            break;
+          default:
+            break;
+        }
+        return remainingTries;
+      }
+      let remainingTries = showBrokenHeart();
+      if (remainingTries === 0) {
+        setTimeout(() => {
+          window.location.href = "gameOver.html";
+        }, 0);
+      }
+      console.log(remainingTries);
+      sessionStorage.setItem('remainingTries', remainingTries);
+    </script>
+</body>
+
+</html>

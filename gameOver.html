@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game Over</title>
+        <link rel="stylesheet" href="styles.css">
+        <audio autoplay>
+            <source src="ost/GAME OVER - Super Mario Bros - game over song.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Set the background image and adjust properties */
+            body::before {
+                content: "";
+                background-color: black;
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
+        <div class="centered-page-text">
+            <p class="game-over-title">GAME OVER!</p>
+            <script>
+                // Reset remainingTries to 3 when the page is loaded
+                sessionStorage.setItem('remainingTries', 3);
+            </script>
+            <a href="mainMenu.html"><button class="menu-button">Main Menu</button></a>
+        </div>
+        <footer></footer>
+    </body>
+</html>
